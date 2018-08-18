@@ -1,0 +1,28 @@
+$primary: #3f51b5;
+mat-form-field {
+    width: 50px !important;
+    font-size: 20px !important;
+    text-align: center !important;
+}
+
+input {
+    border: none !important;
+    width: 50px !important;
+    font-size: 36px !important;
+    text-align: center !important;
+    outline: none !important;
+}
+
+input :focus {
+    .bottom-border {
+        background-color: green;
+        border-bottom: 2px solid green !important;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    // hides up and down arrow in input type number
+    -webkit-appearance: none;
+    margin: 0;
+}
