@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import * as screenfull from 'screenfull';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,24 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  isFullScreen: boolean = true
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+
+    if (screenfull.enabled) {
+      if (event.key === "f") {
+        if (this.isFullScreen) {
+          screenfull.request();
+          this.isFullScreen = true
+        }
+
+        if (!this.isFullScreen) {
+          screenfull.exit();
+          this.isFullScreen = false
+        }
+
+        this.isFullScreen = !this.isFullScreen
+      }
+    }
+  }
 }

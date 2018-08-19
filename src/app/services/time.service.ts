@@ -13,7 +13,7 @@ export class TimeService {
   constructor() {
     this.time = {
       seconds: 0,
-      minutes: 1,
+      minutes: 25,
       hours: 0
     }
   }
@@ -46,7 +46,7 @@ export class TimeService {
   stop() {
     clearInterval(this.interval)
     this.time.seconds = 0
-    this.time.minutes = 1
+    this.time.minutes = 25
     this.time.hours = 0
   }
 

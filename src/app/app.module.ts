@@ -7,12 +7,14 @@ import { StopWatchComponent } from './components/stop-watch/stop-watch.component
 import { TimerComponent } from './components/timer/timer.component';
 import { MaterialModule } from './modules/material/material.module';
 import { RoutesModule } from './modules/routes/routes.module';
+import { TwoDigitsPipe } from './pipes/two-digits.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent,
     StopWatchComponent,
+    TwoDigitsPipe,
   ],
   imports: [
     BrowserModule,
