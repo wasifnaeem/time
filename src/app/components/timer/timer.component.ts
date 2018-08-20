@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as screenfull from 'screenfull';
 import { ITime } from '../../interfaces/time.interface';
-import { TimeService } from '../../services/time.service';
+import { TimeService } from '../../services/timer.service';
 
 @Component({
   selector: 'app-timer',
@@ -10,16 +9,16 @@ import { TimeService } from '../../services/time.service';
 })
 export class TimerComponent implements OnInit {
 
-  isStarted: boolean
-  isPaused: boolean
+  private isStarted: boolean
+  private isPaused: boolean
 
-  innerHeight: any;
-  innerWidth: any;
+  private innerHeight: any;
+  private innerWidth: any;
 
   constructor(
     private timeService: TimeService,
   ) {
-    this.innerHeight = window.screen.height / 4
+    this.innerHeight = window.screen.height / 6
     this.innerWidth = window.screen.width
   }
 
@@ -32,9 +31,8 @@ export class TimerComponent implements OnInit {
     return this.timeService.TIME
   }
 
-  interval
   start() {
-    if (this.Time.hours > 0 || this.Time.minutes > 0 || this.Time.seconds > 0) {
+    if (+this.Time.hours > 0 || +this.Time.minutes > 0 || +this.Time.seconds > 0) {
       this.isStarted = true
       this.timeService.setInitialTime({
         seconds: this.Time.seconds,
@@ -52,12 +50,6 @@ export class TimerComponent implements OnInit {
     this.timeService.stop()
   }
 
-  // reset() {
-  //   this.isPaused = false
-  //   this.isStarted = false
-  //   this.timeService.reset()
-  // }
-
   pause() {
     this.isPaused = true
     this.timeService.pause()
@@ -67,5 +59,4 @@ export class TimerComponent implements OnInit {
     this.isPaused = false
     this.timeService.start()
   }
-
 }

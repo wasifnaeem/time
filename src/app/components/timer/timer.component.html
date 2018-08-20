@@ -1,28 +1,23 @@
 <div [style.padding-top.px]="innerHeight">
   <div class="row">
     <div class="col text-center">
-      <div class="bottom-border" >
-        <input type="number" class="noselect" min="0" max="23" matInput [(ngModel)]="Time.hours">
-        <span style="color: lightgrey">H</span>
-        <input type="number" class="noselect" min="0" max="59" matInput [(ngModel)]="Time.minutes">
-        <span style="color: lightgrey">M</span>
-        <input type="number" class="noselect" min="0" max="59" matInput [(ngModel)]="Time.seconds">
-        <span style="color: lightgrey">S</span>
-      </div>
+      <input type="number" min="0" max="23" matInput [(ngModel)]="Time.hours">
+      <span style="color: lightgrey">H</span>
+      <input type="number" min="0" max="59" matInput [(ngModel)]="Time.minutes">
+      <span style="color: lightgrey">M</span>
+      <input type="number" min="0" max="59" matInput [(ngModel)]="Time.seconds">
+      <span style="color: lightgrey">S</span>
     </div>
   </div>
 
   <div class="row">
-    <div class="col text-center mt-5">
+    <div class="col text-center mt-3">
       <mat-icon color="primary" *ngIf="!isStarted else timeStarted" (click)="start()">play_arrow</mat-icon>
       <ng-template #timeStarted>
         <mat-icon color="primary" *ngIf="isPaused" (click)="continue()">play_arrow</mat-icon>
         <mat-icon color="primary" *ngIf="!isPaused" (click)="pause()">pause</mat-icon>
         <mat-icon color="accent" (click)="stop()">stop</mat-icon>
-        <!-- <mat-icon (click)="reset()">refresh</mat-icon> -->
       </ng-template>
     </div>
   </div>
 </div>
-
-<mat-icon class="full-screen" (click)="fullScreen()">zoom_out_map</mat-icon>

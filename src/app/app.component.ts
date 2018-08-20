@@ -13,7 +13,7 @@ export class AppComponent {
   handleKeyboardEvent(event: KeyboardEvent) {
 
     if (screenfull.enabled) {
-      if (event.key === "f") {
+      if (event.key === 'f') {
         if (this.isFullScreen) {
           screenfull.request();
           this.isFullScreen = true
@@ -25,6 +25,9 @@ export class AppComponent {
         }
 
         this.isFullScreen = !this.isFullScreen
+      }
+      else if (event.key === 'p') {
+        
       }
     }
   }

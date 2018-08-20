@@ -2,8 +2,8 @@ $primary: #3f51b5;
 
 input {
     border: none !important;
-    width: 20rem !important;
-    font-size: 16rem !important;
+    width: 14vw !important;
+    font-size: 12vw !important;
     text-align: center !important;
     outline: none !important;
 }
@@ -16,7 +16,7 @@ input :focus {
 }
 
 span {
-    font-size: 2rem;
+    font-size: 4vw;
 }
 
 input::-webkit-outer-spin-button,
@@ -27,8 +27,8 @@ input::-webkit-inner-spin-button {
 }
 
 mat-icon {
-    margin: 0px 10px;
-    font-size: 200%;
+    margin: 0px 2rem;
+    font-size: 4rem;
 }
 
 .full-screen {

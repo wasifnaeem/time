@@ -1,5 +1,5 @@
 export interface ITime {
-    seconds: number
-    minutes: number
-    hours: number
+    seconds: string
+    minutes: string
+    hours: string
 }
