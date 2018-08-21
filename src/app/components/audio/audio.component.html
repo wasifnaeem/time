@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col d-flex align-items-center">
+
+    <span class="audio-conrols mr-3">
+      <mat-icon (click)="play()" *ngIf="!isStarted else AudioStartedTemplate">play_arrow</mat-icon>
+      <ng-template #AudioStartedTemplate>
+        <mat-icon (click)="continue()" *ngIf="isStarted && isPaused">play_arrow</mat-icon>
+        <mat-icon (click)="pause()" *ngIf="!isPaused && isStarted">pause</mat-icon>
+        <mat-icon (click)="stop()" *ngIf="isStarted">stop</mat-icon>
+      </ng-template>
+    </span>
+
+    <div class="d-flex flex-column">
+      <mat-form-field>
+        <mat-select placeholder="Alarm Tone" [(ngModel)]="audio_file_name">
+          <mat-option *ngFor="let audio of AudioFiles" [value]="audio.file_name">
+            {{audio.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slider min="0" max="1" step="0.05" thumbLabel [displayWith]="formatLabel" [value]="volume" (input)="volumeChanged()"
+        color="primary"></mat-slider>
+    </div>
+
+  </div>
+</div>

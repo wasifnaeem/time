@@ -8,6 +8,7 @@ import { TimerComponent } from './components/timer/timer.component';
 import { MaterialModule } from './modules/material/material.module';
 import { RoutesModule } from './modules/routes/routes.module';
 import { TwoDigitsPipe } from './pipes/two-digits.pipe';
+import { AudioComponent } from './components/audio/audio.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TwoDigitsPipe } from './pipes/two-digits.pipe';
     TimerComponent,
     StopWatchComponent,
     TwoDigitsPipe,
+    AudioComponent,
   ],
   imports: [
     BrowserModule,

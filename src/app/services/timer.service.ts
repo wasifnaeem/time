@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ITime } from '../interfaces/time.interface';
+import { AudioService } from './audio.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TimeService {
+export class TimerService {
 
+  componentClassRef_Subject: Subject<any> = new Subject()
+  isTimeUp_Subject: Subject<boolean> = new Subject()
   private time: ITime
   private initialTime: ITime
   private interval: any
 
-  constructor() {
+  constructor(
+    private audioService: AudioService,
+  ) {
     this.time = {
-      seconds: '10',
-      minutes: '01',
-      hours: '01'
+      seconds: '03',
+      minutes: '00',
+      hours: '00'
     }
   }
 
@@ -22,11 +28,11 @@ export class TimeService {
     this.initialTime = time
   }
 
-  start() {
+  startTimer() {
     this.interval = setInterval(() => {
       if (+this.time.hours == 0 && +this.time.minutes == 0 && +this.time.seconds == 0) {
+        this.isTimeUp_Subject.next(true)
         clearInterval(this.interval)
-        return
       }
       else if (+this.time.hours > 0 && +this.time.minutes == 0 && +this.time.seconds == 0) {
         this.time.hours = (+this.time.hours - 1).toString()
@@ -46,14 +52,14 @@ export class TimeService {
     }, 1000)
   }
 
-  stop() {
+  stopTimer() {
     clearInterval(this.interval)
-    this.time.seconds = '10'
-    this.time.minutes = '01'
+    this.time.seconds = '03'
+    this.time.minutes = '00'
     this.time.hours = '00'
   }
 
-  reset() {
+  resetTimer() {
     if (this.initialTime == undefined)
       return
 
@@ -61,12 +67,12 @@ export class TimeService {
     clearInterval(this.interval)
   }
 
-  pause() {
+  pauseTimer() {
     clearInterval(this.interval);
   }
 
-  continue() {
-    this.start()
+  continueTimer() {
+    this.startTimer()
   }
 
   // Use this property to show every tick-change

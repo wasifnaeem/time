@@ -1,3 +1,9 @@
+<div class="row">
+  <div class="col">
+    <app-audio></app-audio>
+  </div>
+</div>
+
 <div [style.padding-top.px]="innerHeight">
   <div class="row">
     <div class="col text-center">
@@ -12,11 +18,11 @@
 
   <div class="row">
     <div class="col text-center mt-3">
-      <mat-icon color="primary" *ngIf="!isStarted else timeStarted" (click)="start()">play_arrow</mat-icon>
+      <mat-icon color="primary" class="timer-control" *ngIf="!isStarted else timeStarted" (click)="start()">play_arrow</mat-icon>
       <ng-template #timeStarted>
-        <mat-icon color="primary" *ngIf="isPaused" (click)="continue()">play_arrow</mat-icon>
-        <mat-icon color="primary" *ngIf="!isPaused" (click)="pause()">pause</mat-icon>
-        <mat-icon color="accent" (click)="stop()">stop</mat-icon>
+        <mat-icon color="primary" class="timer-control" *ngIf="isPaused" (click)="continue()">play_arrow</mat-icon>
+        <mat-icon color="primary" class="timer-control" *ngIf="!isPaused" (click)="pause()">pause</mat-icon>
+        <mat-icon color="accent" class="timer-control" (click)="stop()">stop</mat-icon>
       </ng-template>
     </div>
   </div>
