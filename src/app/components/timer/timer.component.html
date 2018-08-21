@@ -1,20 +1,23 @@
-<div class="row">
-  <div class="col">
-    <app-audio></app-audio>
-  </div>
-</div>
-
 <div [style.padding-top.px]="innerHeight">
+
   <div class="row">
-    <div class="col text-center">
-      <input type="number" min="0" max="23" matInput [(ngModel)]="Time.hours">
-      <span style="color: lightgrey">H</span>
-      <input type="number" min="0" max="59" matInput [(ngModel)]="Time.minutes">
-      <span style="color: lightgrey">M</span>
-      <input type="number" min="0" max="59" matInput [(ngModel)]="Time.seconds">
-      <span style="color: lightgrey">S</span>
+    <div class="col">
+      <app-audio></app-audio>
     </div>
   </div>
+
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col text-center">
+        <input type="number" min="0" max="23" matInput (input)="hoursInput()" [readonly]="isStarted" formControlName="hours">
+        <span style="color: lightgrey">H</span>
+        <input type="number" min="0" max="59" matInput (input)="minutesInput()" [readonly]="isStarted" formControlName="minutes">
+        <span style="color: lightgrey">M</span>
+        <input type="number" min="0" max="59" matInput (input)="secondsInput()" [readonly]="isStarted" formControlName="seconds">
+        <span style="color: lightgrey">S</span>
+      </div>
+    </div>
+  </form>
 
   <div class="row">
     <div class="col text-center mt-3">

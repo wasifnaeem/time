@@ -80,4 +80,8 @@ export class TimerService {
     return this.time
   }
 
+  set TIME(time: ITime) {
+    this.time = time
+  }
+
 }

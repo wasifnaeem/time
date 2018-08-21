@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IAudio } from '../../interfaces/audio.interface';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ITime } from '../../interfaces/time.interface';
-import { AudioService } from '../../services/audio.service';
 import { TimerService } from '../../services/timer.service';
 
 @Component({
@@ -17,14 +16,20 @@ export class TimerComponent implements OnInit {
   innerHeight: any;
   innerWidth: any;
 
+  form: FormGroup
+
   constructor(
     private timerService: TimerService,
+    private fb: FormBuilder
   ) {
     this.innerHeight = window.screen.height / 5
     this.innerWidth = window.screen.width
   }
 
   ngOnInit() {
+    this.createForm()
+    this.onFormValueChanges()
+
     this.isStarted = false
     this.isPaused = false
 
@@ -40,12 +45,12 @@ export class TimerComponent implements OnInit {
   }
 
   start() {
-    if (+this.Time.hours > 0 || +this.Time.minutes > 0 || +this.Time.seconds > 0) {
+    if (+this.hours.value > 0 || +this.minutes.value > 0 || +this.seconds.value > 0) {
       this.isStarted = true
       this.timerService.setInitialTime({
-        seconds: this.Time.seconds,
-        minutes: this.Time.minutes,
-        hours: this.Time.hours
+        seconds: this.seconds.value,
+        minutes: this.minutes.value,
+        hours: this.hours.value
       })
 
       this.timerService.startTimer()
@@ -68,10 +73,63 @@ export class TimerComponent implements OnInit {
     this.timerService.startTimer()
   }
 
-  // start: data getting from services
-  get Time(): ITime {
-    return this.timerService.TIME
+
+  // start: form and its validations
+
+  onFormValueChanges() {
+    this.form.valueChanges.subscribe((time: ITime) => {
+      console.log(time);
+      
+    })
   }
-  // end: data getting from services
+
+  hoursInput() {
+    if (this.hours.value < 10)
+      this.hours.setValue('0' + this.hours.value)
+    else if (this.hours.value > 23)
+      this.hours.setValue('23')
+  }
+
+  minutesInput() {
+    if (this.minutes.value < 10)
+      this.minutes.setValue('0' + this.minutes.value)
+    else if (this.minutes.value > 59)
+      this.minutes.setValue('59')
+  }
+
+  secondsInput() {
+    if (this.seconds.value < 10)
+      this.seconds.setValue('0' + this.seconds.value)
+    else if (this.seconds.value > 59)
+      this.seconds.setValue('59')
+  }
+
+  setFormValues(time: ITime) {
+    this.hours.setValue(time.hours)
+    this.minutes.setValue(time.minutes)
+    this.seconds.setValue(time.seconds)
+  }
+
+  createForm() {
+    this.form = this.fb.group({
+      hours: this.fb.control('01', [Validators.required]),
+      minutes: this.fb.control('00', [Validators.required]),
+      seconds: this.fb.control('03', [Validators.required])
+    })
+  }
+
+  get hours(): AbstractControl {
+    return this.form.controls['hours']
+  }
+
+  get minutes(): AbstractControl {
+    return this.form.controls['minutes']
+  }
+
+  get seconds(): AbstractControl {
+    return this.form.controls['seconds']
+  }
+
+  // end: form and its validations
 
 }
