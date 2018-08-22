@@ -28,7 +28,6 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
     this.createForm()
-    this.onFormValueChanges()
 
     this.isStarted = false
     this.isPaused = false
@@ -47,20 +46,8 @@ export class TimerComponent implements OnInit {
   start() {
     if (+this.hours.value > 0 || +this.minutes.value > 0 || +this.seconds.value > 0) {
       this.isStarted = true
-      this.timerService.setInitialTime({
-        seconds: this.seconds.value,
-        minutes: this.minutes.value,
-        hours: this.hours.value
-      })
-
       this.timerService.startTimer()
     }
-  }
-
-  stop() {
-    this.isStarted = false
-    this.isPaused = false
-    this.timerService.stopTimer()
   }
 
   pause() {
@@ -73,15 +60,13 @@ export class TimerComponent implements OnInit {
     this.timerService.startTimer()
   }
 
+  stop() {
+    this.isStarted = false
+    this.isPaused = false
+    this.timerService.stopTimer()
+  }
 
   // start: form and its validations
-
-  onFormValueChanges() {
-    this.form.valueChanges.subscribe((time: ITime) => {
-      console.log(time);
-      
-    })
-  }
 
   hoursInput() {
     if (this.hours.value < 10)
