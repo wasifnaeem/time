@@ -6,18 +6,16 @@
     </div>
   </div>
 
-  <form [formGroup]="form">
-    <div class="row">
-      <div class="col text-center">
-        <input type="number" min="0" max="23" matInput (input)="hoursInput()" [readonly]="isStarted" formControlName="hours">
-        <span style="color: lightgrey">H</span>
-        <input type="number" min="0" max="59" matInput (input)="minutesInput()" [readonly]="isStarted" formControlName="minutes">
-        <span style="color: lightgrey">M</span>
-        <input type="number" min="0" max="59" matInput (input)="secondsInput()" [readonly]="isStarted" formControlName="seconds">
-        <span style="color: lightgrey">S</span>
-      </div>
+  <div class="row">
+    <div class="col text-center d-flex align-items-center">
+      <input type="number" [(ngModel)]="Hours" (focusout)="onHourFocusOut()" min="0" max="23" matInput [readonly]="isStarted">
+      <span style="color: lightgrey">H</span>
+      <input type="number" [(ngModel)]="Minutes" (focusout)="onMinuteFocusOut()" min="0" max="59" matInput [readonly]="isStarted">
+      <span style="color: lightgrey">M</span>
+      <input type="number" [(ngModel)]="Seconds" (focusout)="onSecondFocusOut()" min="0" max="59" matInput [readonly]="isStarted">
+      <span style="color: lightgrey">S</span>
     </div>
-  </form>
+  </div>
 
   <div class="row">
     <div class="col text-center mt-3">
