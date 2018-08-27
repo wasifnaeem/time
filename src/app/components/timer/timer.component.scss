@@ -1,7 +1,7 @@
 $primary: #3f51b5;
 input {
     border: none !important;
-    width: 24vw !important;
+    width: 18vw !important;
     font-size: 12vw !important;
     text-align: center !important;
     outline: none !important;
@@ -15,7 +15,7 @@ input :focus {
 }
 
 span {
-    font-size: 4vw;
+    font-size: 6vw;
 }
 
 input::-webkit-outer-spin-button,
@@ -28,10 +28,4 @@ input::-webkit-inner-spin-button {
 .timer-control {
     margin: 0px 2rem;
     font-size: 4rem;
-}
-
-.full-screen {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
 }

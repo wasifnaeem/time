@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AudioService } from '../../services/audio.service';
-import { IAudio } from '../../interfaces/audio.interface';
-import { TimerService } from '../../services/timer.service';
 import { MatSnackBar } from '../../../../node_modules/@angular/material';
+import { IAudio } from '../../interfaces/audio.interface';
+import { AudioService } from '../../services/audio.service';
+import { TimerService } from '../../services/timer.service';
 
 @Component({
   selector: 'app-audio',
@@ -14,7 +14,7 @@ export class AudioComponent implements OnInit {
   isStarted: boolean = false
   isPaused: boolean = false
   isAudioRepeat: boolean
-  audio_file_name: string
+  audio_file_name: string = '3d_bird_tone.mp3'
 
   constructor(
     private audioService: AudioService,
@@ -30,7 +30,7 @@ export class AudioComponent implements OnInit {
     this.timerService.isTimeUp_Subject.subscribe((isTimeUp: boolean) => {
       if (isTimeUp) {
         if (!this.audio_file_name)
-          return this.snackbar.open('No audio file is selected', 'dismiss', {
+          return this.snackbar.open('No tone is selected', 'dismiss', {
             duration: 2000,
             horizontalPosition: 'center'
           })
@@ -42,7 +42,6 @@ export class AudioComponent implements OnInit {
   }
 
   // start: audio controls
-
   play() {
     try {
       if (!this.audio_file_name)
@@ -71,19 +70,12 @@ export class AudioComponent implements OnInit {
     this.isStarted = false
     this.audioService.stop()
   }
-
   // end: audio controls
 
   // start: volume
-  formatLabel(value: number | null) {
-    if (this.audioService)
-      this.audioService.volumeChanged(value)
-
-    if (!value) {
-      return 0;
-    }
-
-    return value * 100
+  value = 0.5
+  volumeChanged() {
+    this.audioService.Volume = this.value
   }
   // end: volume
 

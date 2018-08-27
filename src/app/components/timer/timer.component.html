@@ -1,13 +1,9 @@
-<div [style.padding-top.px]="innerHeight">
+<app-audio class="position-absolute" style="top:2%;right:2%;"></app-audio>
+
+<div style="position: absolute; top:30%;right: 5%;left: 5%;">
 
   <div class="row">
-    <div class="col">
-      <app-audio></app-audio>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col text-center d-flex align-items-center">
+    <div class="col-12 d-flex align-items-center justify-content-center">
       <input type="number" [(ngModel)]="Hours" (focusout)="onHourFocusOut()" min="0" max="23" matInput [readonly]="isStarted">
       <span style="color: lightgrey">H</span>
       <input type="number" [(ngModel)]="Minutes" (focusout)="onMinuteFocusOut()" min="0" max="59" matInput [readonly]="isStarted">
@@ -27,4 +23,5 @@
       </ng-template>
     </div>
   </div>
+
 </div>
