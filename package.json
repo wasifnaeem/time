@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "electron": "ng build && electron .",
-    "electron-aot": "ng build --prod && electron ."
+    "electron-aot": "ng build --prod && electron .",
+    "pack":"electron-packager . --asar"
   },
   "private": true,
   "dependencies": {
