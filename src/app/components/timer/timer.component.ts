@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { TimerService } from '../../services/timer.service';
 })
 export class TimerComponent implements OnInit {
 
+  @ViewChild('media') media: ElementRef
   isStarted: boolean = false
   isPaused: boolean = false
 
@@ -32,6 +33,7 @@ export class TimerComponent implements OnInit {
   onTimeUp() {
     this.timerService.isTimeUp_Subject.subscribe((isTimeUp: boolean) => {
       if (isTimeUp) {
+        this.Audio.play()
         this.isStarted = false
       }
     })
@@ -118,6 +120,10 @@ export class TimerComponent implements OnInit {
 
   set Hours(val: string) {
     this.timerService.Hours = val
+  }
+
+  get Audio(): HTMLAudioElement {
+    return this.media.nativeElement
   }
   // end: properties
 
