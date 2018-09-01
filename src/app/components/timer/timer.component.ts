@@ -12,6 +12,9 @@ export class TimerComponent implements OnInit {
   isStarted: boolean = false
   isPaused: boolean = false
 
+  audioFile: string = './assets/audio/time_up.mp3'
+  repeatAlarm: boolean = false
+
   innerHeight: any;
   innerWidth: any;
 

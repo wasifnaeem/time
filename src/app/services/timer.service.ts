@@ -17,8 +17,8 @@ export class TimerService {
   private initialTime: ITime
 
   constructor() {
-    this.seconds = '00'
-    this.minutes = '25'
+    this.seconds = '03'
+    this.minutes = '00'
     this.hours = '00'
   }
 
@@ -53,8 +53,8 @@ export class TimerService {
 
   stop() {
     clearInterval(this.interval)
-    this.seconds = '00'
-    this.minutes = '25'
+    this.seconds = '03'
+    this.minutes = '00'
     this.hours = '00'
   }
 
