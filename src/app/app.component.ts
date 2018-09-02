@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import * as screenfull from 'screenfull';
+import { TimerComponent } from './components/timer-components/timer/timer.component';
 import { TimerService } from './services/timer.service';
-import { TimerComponent } from './components/timer/timer.component';
 
 @Component({
   selector: 'app-root',

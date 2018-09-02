@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { TimerService } from '../../services/timer.service';
+import { TimerService } from '../../../services/timer.service';
 
 @Component({
   selector: 'app-timer',
