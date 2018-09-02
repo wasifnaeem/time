@@ -29,3 +29,18 @@ input::-webkit-inner-spin-button {
     margin: 0px 2rem;
     font-size: 4rem;
 }
+
+.settings {
+    position: absolute;
+    bottom: 1.5%;
+    right: 1.5%;
+}
+
+.settings-card {
+    position: absolute;
+    bottom: 5%;
+    right: 2%;
+    width: 150px;
+    height: 200px;
+    z-index: 1000;
+}
