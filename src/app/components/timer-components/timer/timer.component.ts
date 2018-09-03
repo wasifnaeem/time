@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TimerService } from '../../../services/timer.service';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-timer',
@@ -33,18 +34,22 @@ export class TimerComponent implements OnInit {
     this.onTimeUp()
   }
 
+  // start: Time Events
   onTimeUp() {
     this.timerService.isTimeUp_Subject.subscribe((isTimeUp: boolean) => {
       if (isTimeUp) {
         this.Audio.play()
         this.isStarted = false
+        this.isAudioPlaying = true
       }
     })
   }
 
   start() {
-    this.isStarted = true
-    this.timerService.start()
+    if (this.timerService.start()) {
+      this.isStarted = true
+      this.isAudioPlaying = false
+    }
   }
 
   pause() {
@@ -62,6 +67,28 @@ export class TimerComponent implements OnInit {
     this.isPaused = false
     this.timerService.stop()
   }
+  // end: Time Events
+
+  // start: Settings Events
+  isSettingsClicked: boolean = false
+  openSettings() {
+    this.isSettingsClicked = true
+  }
+  closeSettings() {
+    this.isSettingsClicked = false
+  }
+  // end: Settings Events
+
+  // start: Sound Events
+  isAudioPlaying: boolean = false
+  playing() {
+    this.isAudioPlaying = true
+  }
+  end() {
+    this.isAudioPlaying = false
+  }
+  // end: Sound Events
+
 
   // start: Events
 

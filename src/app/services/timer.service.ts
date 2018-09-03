@@ -27,7 +27,13 @@ export class TimerService {
   }
 
   private interval: any
-  start() {
+  start(): boolean {
+    if (+this.hours == 0 && +this.minutes == 0 && +this.seconds == 0) {
+      this.isTimeUp_Subject.next(false)
+      clearInterval(this.interval)
+      return false
+    }
+
     this.interval = setInterval(() => {
       if (+this.hours == 0 && +this.minutes == 0 && +this.seconds == 0) {
         this.isTimeUp_Subject.next(true)
@@ -49,6 +55,8 @@ export class TimerService {
         this.seconds = +this.seconds < 10 ? '0' + this.seconds : this.seconds
       }
     }, 1000)
+
+    return true
   }
 
   stop() {

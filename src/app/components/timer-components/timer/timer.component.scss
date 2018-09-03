@@ -31,16 +31,24 @@ input::-webkit-inner-spin-button {
 }
 
 .settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
     position: absolute;
-    bottom: 1.5%;
-    right: 1.5%;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    padding: 0.25rem;
 }
 
 .settings-card {
-    position: absolute;
-    bottom: 5%;
-    right: 2%;
-    width: 150px;
-    height: 200px;
+    width: 190px;
+    height: 250px;
     z-index: 1000;
+}
+
+.audio {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 250px;
 }
