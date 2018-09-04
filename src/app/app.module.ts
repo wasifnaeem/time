@@ -12,6 +12,7 @@ import { TimerComponent } from './components/timer-components/timer/timer.compon
 import { MaterialModule } from './modules/material/material.module';
 import { RoutesModule } from './modules/routes/routes.module';
 import { TwoDigitsPipe } from './pipes/two-digits.pipe';
+import { TimeupComponent } from './components/timer-components/timeup/timeup.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TwoDigitsPipe } from './pipes/two-digits.pipe';
     TwoDigitsPipe,
     AudioComponent,
     SideNavComponent,
+    TimeupComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,9 @@ import { TwoDigitsPipe } from './pipes/two-digits.pipe';
     MatListModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    TimeupComponent
+  ]
 })
 export class AppModule { }

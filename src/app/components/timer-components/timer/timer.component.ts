@@ -1,26 +1,29 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TimerService } from '../../../services/timer.service';
-import { timeout } from 'q';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { TimeupComponent } from '../timeup/timeup.component';
+import { ITimeUp } from '../../../interfaces/time-up.interface';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements OnInit, ITimeUp {
 
   @ViewChild('media') media: ElementRef
   isStarted: boolean = false
   isPaused: boolean = false
 
   audioFile: string = './assets/audio/time_up.mp3'
-  repeatAlarm: boolean = false
+  repeatAlarm: boolean = true
 
   innerHeight: any;
   innerWidth: any;
 
   constructor(
     private timerService: TimerService,
+    private dialog: MatDialog
   ) {
     this.innerHeight = window.screen.height / 6
     this.innerWidth = window.screen.width
@@ -39,9 +42,8 @@ export class TimerComponent implements OnInit {
   onTimeUp() {
     this.timerService.isTimeUp_Subject.subscribe((isTimeUp: boolean) => {
       if (isTimeUp) {
-        this.Audio.play()
-        this.isStarted = false
-        this.isAudioPlaying = true
+        this.playSound()
+        this.openOKdialog()
       }
     })
   }
@@ -71,29 +73,36 @@ export class TimerComponent implements OnInit {
   // end: Time Events
 
   // start: Settings Events
-  isSettingsClicked: boolean = false
+  isSettingsOpened: boolean = false
+  isRotate: boolean = false
   openSettings() {
-    this.isSettingsClicked = true
+    if (this.isSettingsOpened) {
+      this.isSettingsOpened = false
+      return
+    }
+
+    this.isSettingsOpened = true
+    this.isRotate = !this.isRotate
+    setTimeout(() => {
+      this.isRotate = !this.isRotate
+    }, 500);
   }
   closeSettings() {
-    this.isSettingsClicked = false
+    this.isSettingsOpened = false
   }
   // end: Settings Events
 
   // start: Sound Events
   isAudioPlaying: boolean = false
-  volume
-  playing() {
+  playSound() {
+    this.Audio.play()
+    this.isStarted = false
     this.isAudioPlaying = true
   }
   end() {
     this.isAudioPlaying = false
   }
-  volumeChanged() {
-    // this.Audio.volume = this.volume / 100
-  }
   // end: Sound Events
-
 
   // start: Events
   onHourFocusOut() {
@@ -164,8 +173,23 @@ export class TimerComponent implements OnInit {
     return this.Audio.volume * 100
   }
   set Volume(val) {
-    this.Audio.volume = val/100
+    this.Audio.volume = val / 100
   }
   // end: properties
+
+  // start: non-related
+  dialogRef: MatDialogRef<TimeupComponent>
+  closeDialog_ITimeUp() {
+    this.Audio.pause()
+    this.Audio.currentTime = 0
+    this.dialogRef.close()
+  }
+
+  openOKdialog() {
+    this.dialogRef = this.dialog.open(TimeupComponent, { width: "50%" })
+    let component = this.dialogRef.componentInstance
+    component.timeup_parentRef = this
+  }
+  // end: non-related
 
 }

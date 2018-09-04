@@ -1,4 +1,4 @@
-<audio #media preload="auto" (playing)="playing()" (ended)="end()" [loop]="repeatAlarm" [src]="audioFile">
+<audio #media preload="auto" [loop]="repeatAlarm" [src]="audioFile">
   Your browser does not support the audio tag.
 </audio>
 
@@ -27,11 +27,11 @@
 </div>
 
 <div class="settings">
-  <mat-card *ngIf="isSettingsClicked" (mouseenter)="openSettings()" (mouseleave)="closeSettings()" class="settings-card mat-elevation-z8">
+  <mat-card *ngIf="isSettingsOpened" (mouseleave)="closeSettings()" class="settings-card mat-elevation-z8">
     <p class="text-center"><b>Alarm Settings</b></p>
     <mat-checkbox [(ngModel)]="repeatAlarm">Repeat</mat-checkbox>
-    <mat-slider [(ngModel)]="Volume" (change)="volumeChanged()"></mat-slider>
+    <mat-slider [(ngModel)]="Volume" style="cursor: pointer;"></mat-slider>
   </mat-card>
 
-  <mat-icon class="d-flex align-self-end" color="primary" (mouseenter)="openSettings()" (click)="openSettings()">settings</mat-icon>
+  <mat-icon [ngClass]="{'rotate': isRotate}" class="d-flex align-self-end" color="primary" (click)="openSettings()">settings</mat-icon>
 </div>
