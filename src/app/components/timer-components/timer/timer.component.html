@@ -1,5 +1,4 @@
-<audio #media [controls]="isAudioPlaying" controlsList="nodownload" (playing)="playing()" (paused)="paused()" (ended)="end()" [loop]="repeatAlarm" class="audio"
-  [src]="audioFile">
+<audio #media preload="auto" (playing)="playing()" (ended)="end()" [loop]="repeatAlarm" [src]="audioFile">
   Your browser does not support the audio tag.
 </audio>
 
@@ -30,9 +29,8 @@
 <div class="settings">
   <mat-card *ngIf="isSettingsClicked" (mouseenter)="openSettings()" (mouseleave)="closeSettings()" class="settings-card mat-elevation-z8">
     <p class="text-center"><b>Alarm Settings</b></p>
-    <p class="d-flex align-items-center">
-      <mat-checkbox [(ngModel)]="repeatAlarm">Repeat</mat-checkbox>
-    </p>
+    <mat-checkbox [(ngModel)]="repeatAlarm">Repeat</mat-checkbox>
+    <mat-slider [(ngModel)]="Volume" (change)="volumeChanged()"></mat-slider>
   </mat-card>
 
   <mat-icon class="d-flex align-self-end" color="primary" (mouseenter)="openSettings()" (click)="openSettings()">settings</mat-icon>

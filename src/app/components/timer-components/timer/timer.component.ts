@@ -29,6 +29,7 @@ export class TimerComponent implements OnInit {
   ngOnInit() {
     this.isStarted = false
     this.isPaused = false
+    this.Audio.volume = 1
 
     this.timerService.componentClassRef_Subject.next(this)
     this.onTimeUp()
@@ -81,17 +82,20 @@ export class TimerComponent implements OnInit {
 
   // start: Sound Events
   isAudioPlaying: boolean = false
+  volume
   playing() {
     this.isAudioPlaying = true
   }
   end() {
     this.isAudioPlaying = false
   }
+  volumeChanged() {
+    // this.Audio.volume = this.volume / 100
+  }
   // end: Sound Events
 
 
   // start: Events
-
   onHourFocusOut() {
     if (+this.Hours === 0 || this.Hours === undefined || +this.Hours === NaN)
       this.Hours = '00'
@@ -154,6 +158,13 @@ export class TimerComponent implements OnInit {
 
   get Audio(): HTMLAudioElement {
     return this.media.nativeElement
+  }
+
+  get Volume() {
+    return this.Audio.volume * 100
+  }
+  set Volume(val) {
+    this.Audio.volume = val/100
   }
   // end: properties
 
