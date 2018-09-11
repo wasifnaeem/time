@@ -10,7 +10,7 @@ var settings = {
     // The name of the Author of the app (the name of your company)
     authors: 'MWN',
     // The name of the executable of your built
-    exe: './time.exe'
+    exe: './Time.exe'
 };
 
 resultPromise = electronInstaller.createWindowsInstaller(settings);

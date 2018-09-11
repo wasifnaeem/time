@@ -186,7 +186,7 @@ export class TimerComponent implements OnInit, ITimeUp {
   }
 
   openOKdialog() {
-    this.dialogRef = this.dialog.open(TimeupComponent, { width: "50%" })
+    this.dialogRef = this.dialog.open(TimeupComponent, { width: "50%", disableClose: true })
     let component = this.dialogRef.componentInstance
     component.timeup_parentRef = this
   }
