@@ -12,7 +12,9 @@
     "e2e": "ng e2e",
     "electron": "ng build && electron .",
     "electron-aot": "ng build --prod && electron .",
-    "setup": "electron-packager .  --overwrite --asar=true --platform=win32 --arch=x64 time && node build.js"
+    "setup": "electron-packager . time --overwrite --asar --platform=win32 --arch=all",
+    "setup-x32": "node build-x32.js",
+    "setup-x64": "node build-x64.js"
   },
   "build": {
     "appId": "time",

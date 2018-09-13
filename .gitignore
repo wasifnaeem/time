@@ -38,5 +38,7 @@ testem.log
 Thumbs.db
 
 # Custom
-/time-installers
 /time-win32-x64
+/time-win32-ia32
+/time-x32
+/time-x64

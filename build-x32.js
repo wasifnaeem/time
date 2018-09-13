@@ -4,9 +4,9 @@ var electronInstaller = require('electron-winstaller');
 // In this case, we can use relative paths
 var settings = {
     // Specify the folder where the built app is located
-    appDirectory: './time-win32-x64',
+    appDirectory: './time-win32-ia32',
     // Specify the existing folder where 
-    outputDirectory: './time-installers',
+    outputDirectory: './time-x32',
     // The name of the Author of the app (the name of your company)
     authors: 'MWN',
     // The name of the executable of your built
