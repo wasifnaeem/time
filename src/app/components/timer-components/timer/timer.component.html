@@ -30,6 +30,7 @@
   <mat-card *ngIf="isSettingsOpened" (mouseleave)="closeSettings()" class="settings-card mat-elevation-z8">
     <p class="text-center"><b>Alarm Settings</b></p>
     <mat-checkbox [(ngModel)]="repeatAlarm">Repeat</mat-checkbox>
+    <mat-checkbox [(ngModel)]="is_small_screen" (change)="screenSizeChanged()">Small Screen</mat-checkbox>
     <mat-slider [(ngModel)]="Volume" style="cursor: pointer;"></mat-slider>
   </mat-card>
 
