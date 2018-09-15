@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { TimerService } from "../../../services/timer.service";
 import { MatDialog, MatDialogRef } from "@angular/material";
-import { TimeupComponent } from "../timeup/timeup.component";
+import { ElectronService } from "ngx-electron";
 import { ITimeUp } from "../../../interfaces/time-up.interface";
+import { TimerService } from "../../../services/timer.service";
+import { TimeupComponent } from "../timeup/timeup.component";
 
 @Component({
   selector: "app-timer",
@@ -22,7 +23,11 @@ export class TimerComponent implements OnInit, ITimeUp {
   innerHeight: any;
   innerWidth: any;
 
-  constructor(private timerService: TimerService, private dialog: MatDialog) {
+  message: string;
+  constructor(
+    private timerService: TimerService,
+    private dialog: MatDialog
+  ) {
     this.innerHeight = window.screen.height / 6;
     this.innerWidth = window.screen.width;
   }
